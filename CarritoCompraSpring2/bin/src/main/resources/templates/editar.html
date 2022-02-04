@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Editar pedido</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div align="center">
+		<form method="post" th:action="@{/editar/submit}">
+				<table cellspacing="5" cellpadding="15">
+					<th th:text="'Referencia de pedido:  ' + ${pedido.getRef()}"></th>
+					<tr>
+						<td><b>Nombre producto</b></td>
+						<td><b>Unidades</b></td>
+					</tr>
+					<tr th:each="producto : ${listaProductos}">
+						<td th:text="${producto.key.getNombre()}"></td>
+			        	<td ><input type="number" name="unidades" min="0" th:value="${producto.value}"/></td>
+					</tr>
+					
+				</table>
+		</form>
+	</div>
+</body>
+</html>

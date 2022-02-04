@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Nuevo Pedido</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<div id="listado" align="center">
+	<h1>Nuevo pedido:</h1>
+	<form th:action="@{/nuevoPedido/submit}" method="post">
+		<table cellspacing="5" cellpadding="15">
+			<tr>
+				<td><b>Producto</b></td>
+				<td><b>Precio (€/kg)</b></td>
+				<td><b>Unidades</b></td>
+			</tr>
+			<tr th:each="producto : ${listaProductos}">
+				<td th:text="${producto.getNombre()}"></td>
+				<td th:text="${producto.getPrecio()}"></td>
+				<td><input type="number" name="unidades" min="0" value="0"/></td>
+			</tr>
+		</table></br>
+		<input type="submit" value="enviar" id="submit"/>
+	</form>
+</div>
+	
+</body>
+</html>

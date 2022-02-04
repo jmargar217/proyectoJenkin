@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Listado de pedidos:</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<div align="center">
+	<h1>Listado de pedidos:</h1>
+	<table cellspacing="5" cellpadding="15">
+		<tr>
+			<td><b>Referencia</b></td>
+			<td><b>Fecha</b></td>
+			<td><b>Tipo de envio</b></td>
+			<td></td>
+		</tr>
+		<tr th:each="pedido : ${listaPedidos}">
+			<td th:text="${pedido.getRef()}"></td>
+			<td th:text="${pedido.getFechaOrdenada()}"></td>
+			<td th:text="${pedido.getTipoEnvio()}"></td>
+			<td><a th:href="@{/pedido/editar/{ref}(ref=${pedido.ref})}">Editar</a></td>
+		</tr>
+</table>
+</div>
+
+
+</body>
+</html>
