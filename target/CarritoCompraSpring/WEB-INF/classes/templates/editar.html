@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Editar pedido</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../css/editar.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+	<div>
+	
+		<form  th:action="@{/editar/submit}" method="post">
+		Ref: <input type="text" name="ref" th:value="${pedido.getRef()}" th:attrappend="readonly=${pedido.ref > 0}"/>
+			<table id="tablaProductos">
+				<tr>
+					<td><strong>Producto</strong></td>
+					<td><strong>Unidades</strong></td>
+				</tr>
+				<tr th:each="lineaPedido : ${pedido.getListaLinea()}">
+	        		<td th:text="${lineaPedido.getProducto().getNombre()}"></td>
+	        		<td><input type="number" name="unidades" min="0" th:value="${lineaPedido.getUnidades()}"/></td>
+	       		</tr>
+	     	</table>
+	 <h2>Datos de envio:</h2>
+	
+	     <table id="tablaEnvio">
+	        <tr>
+	        	<td><strong>Dirección de envio: </strong></td>
+				<td><strong>Teléfono:</strong></td>
+				<td><strong>Email:</strong></td>
+				<td><strong>Tipo de envio:</strong></td>
+				<td></td>
+	        </tr>
+	        <tr>
+						<td><input type="text" name="direccion" th:value="${pedido.getDireccion()}"/></td>
+						<td><input type="text" name="telefono" th:value="${pedido.getTelefono()}"/></td>
+						<td><input type="text" name="correo" th:value="${pedido.getCorreo()}"/></td>
+						<td>Envio 24h<input type="radio" name="envio" value="urgente(24h)" th:checked="${pedido.getTipoEnvio() == 'urgente(24h)'}"/></br>
+							Envio al peso<input type="radio" name="envio" value="peso" th:checked="${pedido.getTipoEnvio() == 'peso'}"/></br>
+							Tarifa<input type="radio" name="envio" value="tarifa" th:checked="${pedido.getTipoEnvio() == 'tarifa'}"/></br></td>
+						<td><input type="submit" value="Editar pedido"/></td>
+					</tr>
+	       </table>
+		</form>
+	</div>
+</body>
+</html>
