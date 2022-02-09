@@ -2,17 +2,23 @@ package com.example.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.example.demo.service.UsuarioServiceDB;
+import com.example.demo.model.Usuario;
 
 class UsuarioTest {
-	@Autowired UsuarioServiceDB servicioUser;
+	Usuario usuario;
+	
+	
+	@BeforeEach
+	void init() {
+		usuario = new Usuario("jmargar217", "4959");
+	}
 
 	@Test
 	void test() {
-		assertEquals(3, this.servicioUser.findAll().size());
+		assertEquals("jmargar217", usuario.getUser());
 	}
 
 }
