@@ -1,27 +1,31 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head> 
     <title>Listado de pedidos:</title> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="css/listado.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
-<div align="center">
+<div id="listado" align="center">
 	<h1>Listado de pedidos:</h1>
-	<table cellspacing="5" cellpadding="15">
+	<table >
 		<tr>
-			<td><b>Referencia</b></td>
-			<td><b>Fecha</b></td>
-			<td><b>Tipo de envio</b></td>
+			<td><strong>Referencia</strong></td>
+			<td><strong>Fecha</strong></td>
+			<td><strong>Tipo de envio</strong></td>
 			<td></td>
 		</tr>
 		<tr th:each="pedido : ${listaPedidos}">
 			<td th:text="${pedido.getRef()}"></td>
 			<td th:text="${pedido.getFechaOrdenada()}"></td>
 			<td th:text="${pedido.getTipoEnvio()}"></td>
-			<td><a th:href="@{/pedido/editar/{ref}(ref=${pedido.ref})}">Editar</a></td>
+			<td><a th:href="@{/pedido/editar/{ref}(ref=${pedido.ref})}">Editar</a>&nbsp;&nbsp;
+				<a th:href="@{/borrar/{ref}(ref=${pedido.ref})}">Borrar</a></td>
 		</tr>
 </table>
+<h3><a href="/logout">Cerrar sesión</a></h3>
+<h3><a href="/seleccion/nuevoPedido">Crear pedido</a></h3>
 </div>
 
 
